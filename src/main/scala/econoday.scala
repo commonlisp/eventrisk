@@ -6,9 +6,9 @@ import collection.mutable._
 
 import collection.JavaConversions._ /* implicit collections conversions */
 
-class Econoday(econodayURL : URL) {
+class Econoday(econodayURL : String) {
   val parseTimeout = 500 /* in ms */
-  val doc = Jsoup.parse(econodayURL, parseTimeout)
+  val doc = Jsoup.connect(econodayURL).get()
   val tbl = doc.select(".eventstable")
   val rows = tbl.select("tr")
   val days = rows.get(0).select("td").map(x => x.text())
