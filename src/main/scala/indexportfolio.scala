@@ -11,8 +11,16 @@ case class PriceWeightedIndex(symbols: List[String], divisor: Double)
 object IndexPortfolio { 
 
 def securityPrice(symbol: String): Double = {
-       return Jsoup.connect(conf.getString("quoteSourceUrl")+symbol).
-              get.select(".time_rtq_ticker").first.text.toDouble
+	   val url = conf.getString("quoteSourceUrl")
+       val c = Jsoup.connect(url+symbol)
+	   val elems = c.get.select(".time_rtq_ticker")
+	   if (elems.first == null)
+		   return 0.0
+	   else
+		    elems.first.
+			  text.
+			  toDouble
+                    
 }
 
 def indexPrice(idx: PriceWeightedIndex): Double = {
