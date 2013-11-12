@@ -1,7 +1,10 @@
 package com.typedynamic.eventrisk
 
 import Config._
-import actors.Futures._
+//import scala.actors._
+import scala.concurrent._
+
+import ExecutionContext.Implicits.global
 
 import collection.JavaConversions._
 import org.jsoup.Jsoup
@@ -28,10 +31,12 @@ def indexPrice(idx: PriceWeightedIndex): Double = {
   
 }
 
+/*
 def parIndexPrice(idx: PriceWeightedIndex): Double = {
-  return (idx.symbols.map( x => future { securityPrice(x) } )).map (_.apply()).sum/idx.divisor
+  return (idx.symbols.map( x => Future { securityPrice(x) } )).map (_ apply()).sum/idx.divisor
 }
-val djia = PriceWeightedIndex(List("AA", "AXP", "BA", "BAC", "CAT", "CSCO", "CVX", "DD", "DIS", "GE", "HD", "HPQ", "IBM", "INTC", "JNJ", "JPM", "KFT", "KO", "MCD", "MMM", "MRK", "MSFT", "PFE", "PG", "T", "TRV", "UTX", "VZ", "WMT", "XOM"), 0.132129493) 
+*/
+val djia = PriceWeightedIndex(List("AXP", "BA", "BAC", "CAT", "CSCO", "CVX", "DD", "DIS", "GE", "GS", "HD", "IBM", "INTC", "JNJ", "JPM", "KFT", "KO", "MCD", "MMM", "MRK", "MSFT", "NKE", "PFE", "PG", "T", "TRV", "UNH", "UTX", "V", "VZ", "WMT", "XOM"), 0.132129493) 
 }
 
 
