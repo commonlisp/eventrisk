@@ -32,7 +32,10 @@ def parIndexPrice(idx: PriceWeightedIndex): Double = {
   return (idx.symbols.map( x => Futures.future { securityPrice(x) } )).map (_ apply()).sum/idx.divisor
 }
 
-val djia = PriceWeightedIndex(List("AXP", "BA", "BAC", "CAT", "CSCO", "CVX", "DD", "DIS", "GE", "GS", "HD", "IBM", "INTC", "JNJ", "JPM", "KFT", "KO", "MCD", "MMM", "MRK", "MSFT", "NKE", "PFE", "PG", "T", "TRV", "UNH", "UTX", "V", "VZ", "WMT", "XOM"), 0.132129493) 
+val djia = PriceWeightedIndex(List("AXP", "BA", "BAC", "CAT", "CSCO", 
+  "CVX", "DD", "DIS", "GE", "GS", "HD", "IBM", "INTC", "JNJ", "JPM", 
+  "KFT", "KO", "MCD", "MMM", "MRK", "MSFT", "NKE", "PFE", "PG", "T", 
+  "TRV", "UNH", "UTX", "V", "VZ", "WMT", "XOM"), 0.13500289) 
 }
 
 
